@@ -237,7 +237,7 @@ void displayLogo(const string& os_name, bool show_logo) {
     } else if (os_name == "opensuse") {
         cout << suse_logo << endl;
     } else {
-        cout << "🚫 No logo available for this OS." << endl;
+        cout << "すまんな まだ用意してないんだわ" << endl;
     }
     cout << endl;
 }
