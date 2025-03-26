@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/neofetch_clone.dir/link.d CMakeFiles/neofetch_clone.dir/src/main.cpp.o -o neofetch_clone
