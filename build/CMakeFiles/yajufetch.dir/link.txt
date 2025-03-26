@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/yajufetch.dir/link.d CMakeFiles/yajufetch.dir/src/main.cpp.o -o yajufetch
