@@ -30,11 +30,11 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso
 
 // ===== Arch Linux =====
 const string arch_logo = R"(
-       /\\
-      /  \\
-     /    \\
-    /   ,  \\
-   /___/|___\\
+       /\\\
+      /  \\\
+     /    \\\
+    /   ,  \\\
+   /___/|___\\\
 )";
 
 // ===== Fedora =====
@@ -216,11 +216,10 @@ void displayLogo(const string& os_name, bool show_logo) {
         return;
     }
 
-    cout << "\033[36mS Logo: \033[0m";
     if (os_name == "ubuntu") {
         cout << ubuntu_logo << endl;
     } else if (os_name == "arch") {
-        cout << arch_logo << endl;
+        cout << "\033[36m" << arch_logo << "\033[0m" << endl;
     } else if (os_name == "fedora") {
         cout << fedora_logo << endl;
     } else if (os_name == "debian") {
