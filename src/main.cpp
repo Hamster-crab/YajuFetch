@@ -151,8 +151,9 @@ string getOSName() {
     string line;
     while (getline(file, line)) {
         if (line.find("ID=") != string::npos) {
-            line = line.substr(3);
-            if (line.find('"') != string::npos) {
+            line = line.substr(3);  // "ID="以降を取得
+            // ダブルクォート削除
+            if (line.front() == '"' && line.back() == '"') {
                 line = line.substr(1, line.size() - 2);
             }
             return line;
