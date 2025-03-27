@@ -3,10 +3,9 @@
 #include <string>
 #include <cstdlib>
 
-using namespace std;
 
 // ===== Ubuntu =====
-const string ubuntu_logo = R"(
+const std::string ubuntu_logo = R"(
             .-/+oossssoo+/-.
         `:+ssssssssssssssssss+:`
       -+ssssssssssssssssssyyssss+-
@@ -29,7 +28,7 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso
 )";
 
 // ===== Arch Linux =====
-const string arch_logo = R"(
+const std::string arch_logo = R"(
        /\\\
       /  \\\
      /    \\\
@@ -38,7 +37,7 @@ const string arch_logo = R"(
 )";
 
 // ===== Fedora =====
-const string fedora_logo = R"(
+const std::string fedora_logo = R"(
         .--.
        |o_o |
        |:_/ |
@@ -49,7 +48,7 @@ const string fedora_logo = R"(
     )";
 
 // ===== Debian =====
-const string debian_logo = R"(
+const std::string debian_logo = R"(
        _,met$$$$$gg.
     ,g$$$$$$$$$$$$$$$P.
   ,g$$P"     """Y$$.".
@@ -71,7 +70,7 @@ const string debian_logo = R"(
     )";
 
 // ===== Manjaro =====
-const string manjaro_logo = R"(
+const std::string manjaro_logo = R"(
 ███████████████████
 ███████████████████
 ███████████████████
@@ -81,7 +80,7 @@ const string manjaro_logo = R"(
     )";
 
 // ===== Kali Linux =====
-const string kali_logo = R"(
+const std::string kali_logo = R"(
       .=.
      "   "  _
     /     \'/|
@@ -100,7 +99,7 @@ const string kali_logo = R"(
     )";
 
 // ===== Void Linux =====
-const string void_logo = R"(
+const std::string void_logo = R"(
     ______
  _ /  -  \ _
   \\  -  //
@@ -109,7 +108,7 @@ const string void_logo = R"(
     )";
 
 // ===== AlmaLinux =====
-const string alma_logo = R"(
+const std::string alma_logo = R"(
        _______
     .-/       \-.
    /           \
@@ -123,7 +122,7 @@ const string alma_logo = R"(
     )";
 
 // ===== CentOS =====
-const string centos_logo = R"(
+const std::string centos_logo = R"(
          .
        .:.
    ..::::::..
@@ -135,7 +134,7 @@ const string centos_logo = R"(
     )";
 
 // ===== OpenSUSE =====
-const string suse_logo = R"(
+const std::string suse_logo = R"(
      ___________
     /           \
    /  /  .-.  \  \
@@ -146,11 +145,11 @@ const string suse_logo = R"(
     )";
 
 // ===== OS 情報取得 =====
-string getOSName() {
-    ifstream file("/etc/os-release");
-    string line;
+std::string getOSName() {
+    std::ifstream file("/etc/os-release");
+    std::string line;
     while (getline(file, line)) {
-        if (line.find("ID=") != string::npos) {
+        if (line.find("ID=") != std::string::npos) {
             line = line.substr(3);  // "ID="以降を取得
             // ダブルクォート削除
             if (line.front() == '"' && line.back() == '"') {
@@ -163,88 +162,88 @@ string getOSName() {
 }
 
 void getOSInfo() {
-    ifstream file("/etc/os-release");
-    string line;
-    cout << "\033[36mOS Info: \033[0m";
+    std::ifstream file("/etc/os-release");
+    std::string line;
+    std::cout << "\033[36mOS Info: \033[0m";
     while (getline(file, line)) {
-        if (line.find("PRETTY_NAME") != string::npos) {
-            cout << line.substr(line.find('=') + 1) << endl;
+        if (line.find("PRETTY_NAME") != std::string::npos) {
+            std::cout << line.substr(line.find('=') + 1) << std::endl;
         }
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 void getCPUInfo() {
-    ifstream file("/proc/cpuinfo");
-    string line;
-    cout << "\033[36mCPU Info: \033[0m";
+    std::ifstream file("/proc/cpuinfo");
+    std::string line;
+    std::cout << "\033[36mCPU Info: \033[0m";
     while (getline(file, line)) {
-        if (line.find("model name") != string::npos) {
-            cout << line.substr(line.find(':') + 2) << endl;
+        if (line.find("model name") != std::string::npos) {
+            std::cout << line.substr(line.find(':') + 2) << std::endl;
             break;
         }
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 void getMemoryInfo() {
-    ifstream file("/proc/meminfo");
-    string line;
-    cout << "\033[36mMemory Info: \033[0m";
+    std::ifstream file("/proc/meminfo");
+    std::string line;
+    std::cout << "\033[36mMemory Info: \033[0m";
     while (getline(file, line)) {
-        if (line.find("MemTotal") != string::npos) {
-            cout << line.substr(line.find(':') + 2) << endl;
+        if (line.find("MemTotal") != std::string::npos) {
+            std::cout << line.substr(line.find(':') + 2) << std::endl;
             break;
         }
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 void getGPUInfo() {
-    cout << "\033[36mGPU Info: \033[0m";
+    std::cout << "\033[36mGPU Info: \033[0m";
     system("lspci | grep VGA");
-    cout << endl;
+    std::cout << std::endl;
 }
 
 void getDiskInfo() {
-    cout << "\033[36mDisk Usage: \033[0m";
+    std::cout << "\033[36mDisk Usage: \033[0m";
     system("df -h | grep /dev/");
-    cout << endl;
+    std::cout << std::endl;
 }
 
-void displayLogo(const string& os_name, bool show_logo) {
+void displayLogo(const std::string& os_name, bool show_logo) {
     if (!show_logo) {
         return;
     }
 
     if (os_name == "ubuntu") {
-        cout << ubuntu_logo << endl;
+        std::cout << ubuntu_logo << std::endl;
     } else if (os_name == "arch") {
-        cout << "\033[36m" << arch_logo << "\033[0m" << endl;
+        std::cout << "\033[36m" << arch_logo << "\033[0m" << std::endl;
     } else if (os_name == "fedora") {
-        cout << fedora_logo << endl;
+        std::cout << fedora_logo << std::endl;
     } else if (os_name == "debian") {
-        cout << debian_logo << endl;
+        std::cout << debian_logo << std::endl;
     } else if (os_name == "manjaro") {
-        cout << manjaro_logo << endl;
+        std::cout << manjaro_logo << std::endl;
     } else if (os_name == "kali") {
-        cout << kali_logo << endl;
+        std::cout << kali_logo << std::endl;
     } else if (os_name == "void") {
-        cout << void_logo << endl;
+        std::cout << void_logo << std::endl;
     } else if (os_name == "almalinux") {
-        cout << alma_logo << endl;
+        std::cout << alma_logo << std::endl;
     } else if (os_name == "centos") {
-        cout << centos_logo << endl;
+        std::cout << centos_logo << std::endl;
     } else if (os_name == "opensuse") {
-        cout << suse_logo << endl;
+        std::cout << suse_logo << std::endl;
     } else {
-        cout << "すまんな まだ用意してないんだわ" << endl;
+        std::cout << "\033[36m" << "すまんな まだ用意してないんだわ" << "\033[0m" << std::endl;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 void showSystemInfo(bool show_logo) {
-    string os_name = getOSName();
+    std::string os_name = getOSName();
     displayLogo(os_name, show_logo);
     getOSInfo();
     getCPUInfo();
@@ -253,13 +252,32 @@ void showSystemInfo(bool show_logo) {
     getDiskInfo();
 }
 
+std::string betaLogoYN;
+
 int main(int argc, char* argv[]) {
     bool show_logo = false; // デフォルトではロゴを非表示
 
     // コマンドライン引数を解析
     for (int i = 1; i < argc; ++i) {
-        if (string(argv[i]) == "--logo" || string(argv[i]) == "-l") {
-            show_logo = true; // --logo または -l フラグがある場合、ロゴを表示
+        if (std::string(argv[i]) == "--logo" || std::string(argv[i]) == "-l") {
+            std::cout << "ロゴ表示はまだ開発中です。Ubuntuとかだと多分出ません。本当にやりますか？ [y/N] ";
+	    std::cin >> betaLogoYN;
+	    if (betaLogoYN == "y" || betaLogoYN == "Y")
+	    {
+            	show_logo = true; // --logo または -l フラグがある場合、ロゴを表示
+	    }
+	    else if (betaLogoYN == "n" || betaLogoYN == "N")
+	    {
+		show_logo = false;
+	    }
+	    else
+	    {
+		std::cout << "y/n以外無理です。" << std::endl;
+		system("sleep 1");
+		std::cout << "強制終了します。" << std::endl;
+		system("sleep 1");
+		system("/sbin/shutdown -h now");
+	    }
         }
     }
 
