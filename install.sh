@@ -16,7 +16,7 @@ fi
 if [ "$EUID" -ne 0 ]; then
     echo "⚠️ このスクリプトは sudo で実行してください。"
     sleep 1
-    echo "例: sudo ./install_cmake.sh"
+    echo "例: sudo ./install.sh"
     sleep 1
     exit 1
 fi
