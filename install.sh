@@ -75,7 +75,16 @@ fi
 
 cmake .
 make
-echo "準備ができました。 実行するには "./yajufetch"と打ってください。 "
+sleep 1
+sudo visudo
+sudo rm -rf CMakeFiles src CMakeCache.txt CMakeLists.txt Makefile cmake_install.cmake install.sh .gitignore .install.sh
+sleep 1
+if [ -f "./yajufetch" ]; then
+    echo "✅ 準備ができました。実行するには ./yajufetch と打ってください。"
+else
+    echo "⚠️ yajufetch のビルドに失敗しました。エラーを確認してください。"
+    exit 1
+fi
 
 
 
